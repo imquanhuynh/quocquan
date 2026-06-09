@@ -1,1 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attland Project Hub - Giao Diện Lưu Trữ 2 Năm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { 800: '#1e293b', 900: '#0f172a' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased" x-data="{ currentYear: '2026', currentMonth: 'Tháng 6', activeLightbox: null }">
 
+    <nav class="bg-white border-b border-slate-100 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-navy-900 text-white flex items-center justify-center font-bold text-lg rounded shadow-sm">A</div>
+                    <span class="font-bold text-lg tracking-tight text-navy-900">ATTLAND <span class="font-light text-slate-400">| Media Archive</span></span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20">
+                        <span class="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse"></span> Hệ thống tự động hoạt động
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <div class="mb-10">
+            <div class="mb-6">
+                <h1 class="text-2xl font-bold text-navy-900">Hệ Thống Giám Sát Tiến Độ Trực Quan</h1>
+                <p class="text-sm text-slate-500 mt-1">Dữ liệu được đồng bộ tự động từ công trường. Thời gian xây dựng dự kiến: 24 tháng (2025 - 2027).</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="text-xs text-slate-400 font-medium uppercase">Tổng thời gian đã qua</div>
+                    <div class="text-xl font-bold text-navy-900 mt-1">14 / 24 <span class="text-xs font-normal text-slate-400">Tháng</span></div>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full mt-3">
+                        <div class="bg-navy-900 h-1.5 rounded-full" style="width: 58%"></div>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="text-xs text-slate-400 font-medium uppercase">Tổng số ảnh lưu trữ</div>
+                    <div class="text-xl font-bold text-navy-900 mt-1">1,420 <span class="text-xs font-normal text-slate-400">Tấm ảnh</span></div>
+                    <div class="text-xs text-emerald-600 font-medium mt-2"><i class="fa-solid fa-arrow-up mr-1"></i> +4 ảnh hôm nay</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                    <div class="text-xs text-slate-400 font-medium uppercase">Dung lượng tối ưu (WebP)</div>
+                    <div class="text-xl font-bold text-navy-900 mt-1">342 MB <span class="text-xs font-normal text-red-400">(-85% dung lượng gốc)</span></div>
+                    <div class="text-xs text-slate-400 mt-2">Đã qua bộ lọc xử lý tự động</div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div class="text-xs text-slate-400 font-medium uppercase">Góc máy cố định (Timelapse)</div>
+                    <div class="text-xl font-bold text-blue-600 mt-1">03 <span class="text-xs font-normal text-slate-400">Camera</span></div>
+                    <div class="text-xs text-slate-400 mt-1">Tự động chụp mỗi 12 giờ</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-4 space-y-6">
+                
+                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                    <h3 class="text-sm font-semibold text-navy-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-days text-slate-400"></i> Bộ Lọc Biên Niên Sử (2 Năm)
+                    </h3>
+                    
+                    <div class="grid grid-cols-3 gap-2 p-1 bg-slate-50 rounded-lg mb-4">
+                        <button @click="currentYear = '2027'" :class="currentYear === '2027' ? 'bg-white text-navy-900 shadow-sm font-semibold' : 'text-slate-500'" class="py-1.5 text-xs rounded-md transition text-center">2027</button>
+                        <button @click="currentYear = '2026'" :class="currentYear === '2026' ? 'bg-white text-navy-900 shadow-sm font-semibold' : 'text-slate-500'" class="py-1.5 text-xs rounded-md transition text-center">2026</button>
+                        <button @click="currentYear = '2025'" :class="currentYear === '2025' ? 'bg-white text-navy-900 shadow-sm font-semibold' : 'text-slate-500'" class="py-1.5 text-xs rounded-md transition text-center">2025</button>
+                    </div>
+
+                    <div class="space-y-1 max-h-60 overflow-y-auto pr-1">
+                        <template x-for="month in ['Tháng 6', 'Tháng 5', 'Tháng 4', 'Tháng 3', 'Tháng 2', 'Tháng 1']">
+                            <button @click="currentMonth = month" 
+                                    :class="currentMonth === month ? 'bg-navy-900 text-white' : 'text-slate-600 hover:bg-slate-50'"
+                                    class="w-full text-left px-3 py-2 text-xs rounded-lg transition flex justify-between items-center">
+                                <span x-text="month"></span>
+                                <span class="text-[10px] opacity-60" :class="currentMonth === month ? 'text-white' : 'text-slate-400'">30 ngày cập nhật</span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm overflow-hidden relative group">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-sm font-semibold text-navy-900 flex items-center gap-2">
+                            <i class="fa-solid fa-film text-blue-500"></i> Tiến Độ Timelapse
+                        </h3>
+                        <span class="text-[10px] text-slate-400">Góc nhìn Cam 01</span>
+                    </div>
+                    <div class="relative bg-slate-900 h-44 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1541888081695-1f9d4e5658e2?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent"></div>
+                        
+                        <button class="relative z-10 w-12 h-12 bg-white text-navy-900 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition">
+                            <i class="fa-solid fa-play text-sm ml-0.5"></i>
+                        </button>
+
+                        <div class="absolute bottom-3 left-3 right-3 flex justify-between items-center z-10">
+                            <span class="text-[10px] text-white font-mono bg-black bg-opacity-40 px-1.5 py-0.5 rounded">Tốc độ: 1 ngày / giây</span>
+                            <span class="text-[10px] text-slate-300 font-mono" x-text="currentYear"></span>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-2 text-center">Hệ thống tự động ghép ảnh thành video tua nhanh tiến độ mỗi tháng một lần.</p>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-8">
+                
+                <div class="bg-white px-5 py-4 rounded-xl border border-slate-100 shadow-sm mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                    <div>
+                        <span class="text-xs font-medium text-slate-400">Đang xem kho lưu trữ:</span>
+                        <div class="text-sm font-bold text-navy-900">
+                            <span x-text="currentMonth"></span>, Năm <span x-text="currentYear"></span>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 bg-slate-50 p-1 rounded-lg text-xs">
+                        <button class="px-3 py-1 bg-white text-navy-900 font-medium rounded shadow-xs">Tất cả ảnh</button>
+                        <button class="px-3 py-1 text-slate-500 hover:text-navy-900">Flycam</button>
+                        <button class="px-3 py-1 text-slate-500 hover:text-navy-900">Mặt đất</button>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    
+                    <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                        <div class="flex items-center gap-2 mb-4 border-b border-slate-50 pb-2">
+                            <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+                            <h4 class="text-xs font-bold text-navy-900">HÔM NAY - Ngày 09, <span x-text="currentMonth"></span> <span x-text="currentYear"></span></h4>
+                            <span class="text-[10px] text-slate-400 font-mono ml-auto">Cập nhật lúc 08:30 AM</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div @click="activeLightbox = 1" class="group relative aspect-video bg-slate-100 rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                <div class="absolute bottom-1 right-1 bg-black bg-opacity-60 text-[9px] text-white px-1 rounded">Góc 1</div>
+                            </div>
+                            <div @click="activeLightbox = 2" class="group relative aspect-video bg-slate-100 rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?auto=format&fit=crop&w=400&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                <div class="absolute bottom-1 right-1 bg-black bg-opacity-60 text-[9px] text-white px-1 rounded">Flycam</div>
+                            </div>
+                            <div @click="activeLightbox = 3" class="group relative aspect-video bg-slate-100 rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?auto=format&fit=crop&w=400&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                <div class="absolute bottom-1 right-1 bg-black bg-opacity-60 text-[9px] text-white px-1 rounded">Góc 2</div>
+                            </div>
+                            <div @click="activeLightbox = 4" class="group relative aspect-video bg-slate-100 rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&w=400&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                <div class="absolute bottom-1 right-1 bg-black bg-opacity-60 text-[9px] text-white px-1 rounded">Góc 3</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                        <div class="flex items-center gap-2 mb-4 border-b border-slate-50 pb-2">
+                            <span class="w-2 h-2 bg-slate-300 rounded-full"></span>
+                            <h4 class="text-xs font-bold text-slate-600">HÔM QUA - Ngày 08, <span x-text="currentMonth"></span> <span x-text="currentYear"></span></h4>
+                            <span class="text-[10px] text-slate-400 font-mono ml-auto">Cập nhật lúc 17:00 PM</span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div @click="activeLightbox = 1" class="group relative aspect-video bg-slate-100 rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1541888081695-1f9d4e5658e2?auto=format&fit=crop&w=400&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            </div>
+                            <div @click="activeLightbox = 2" class="group relative aspect-video bg-slate-100 rounded-lg overflow-hidden cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-4">
+                        <button class="px-5 py-2 border border-slate-200 hover:border-navy-900 rounded-lg text-xs font-medium text-slate-600 hover:text-navy-900 transition bg-white shadow-xs">
+                            <i class="fa-solid fa-arrow-rotate-right mr-1.5 animate-spin text-slate-400"></i> Tải thêm dữ liệu lịch sử lịch trình
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div x-show="activeLightbox !== null" x-cloak @keydown.escape.window="activeLightbox = null" class="fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center p-4">
+        <button @click="activeLightbox = null" class="absolute top-4 right-4 text-white text-3xl hover:text-slate-300 transition">&times;</button>
+        
+        <div class="max-w-4xl max-h-[80vh]">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" class="rounded shadow-2xl max-w-full max-h-[80vh] object-contain">
+        </div>
+        
+        <div class="mt-4 text-center text-white space-y-1">
+            <p class="text-sm font-semibold">Ảnh Giám Sát Kết Cấu Tầng 15</p>
+            <p class="text-xs text-slate-400 font-mono">File: ATTLAND_RIVERSIDE_20260609_01.webp | Size: 184 KB | Format: WebP</p>
+        </div>
+    </div>
+
+</body>
+</html>
